@@ -108,7 +108,8 @@ Content-Type: application/json
   "content_type": "application/pdf",
   "metadata": {
     "language": "es",
-    "instructions": "Instrucciones personalizadas para el procesamiento"
+    "instructions": "Instrucciones personalizadas para el procesamiento",
+    "user_email": "usuario@example.com"
   }
 }
 ```
@@ -127,6 +128,7 @@ curl -X PUT 'PRESIGNED_URL' \
   --header 'Content-Type: application/pdf' \
   --header 'x-amz-meta-language: es' \
   --header 'x-amz-meta-instructions: Instrucciones personalizadas...' \
+  --header 'x-amz-meta-user-email: usuario@example.com' \
   --data-binary '@archivo-clean.pdf'
 ```
 
@@ -264,6 +266,7 @@ El servicio permite agregar cualquier metadato personalizado que se almacenará 
 
 - **language:** Idioma del archivo
 - **instructions:** Instrucciones de procesamiento
+- **user_email:** Email del usuario que sube el archivo
 - **Cualquier clave personalizada:** Se convierte automáticamente a `x-amz-meta-clave`
 
 ---
