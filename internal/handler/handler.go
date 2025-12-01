@@ -94,7 +94,7 @@ func (h *Handler) GeneratePutURL(w http.ResponseWriter, r *http.Request) {
 
 	// Log the generated path and URL for debugging
 	println("Generated object path:", fullPath)
-	println("Generated presigned URL query params (first 200 chars):", url[0:min(200, len(url))])
+	println("Generated presigned URL FULL:", url)
 
 	respondWithJSON(w, http.StatusOK, PresignedURLResponse{
 		URL:       url,

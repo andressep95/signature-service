@@ -47,8 +47,9 @@ func (s *AWSSigner) GeneratePresignedPutURL(bucket, key, contentType string, met
 
 	// Add metadata headers (x-amz-meta-*)
 	for k, v := range metadata {
-		// Normalize header key to lowercase (AWS requirement)
-		headerKey := strings.ToLower(fmt.Sprintf("x-amz-meta-%s", k))
+		// Normalize header key to lowercase and replace underscores with hyphens (HTTP standard)
+		normalizedKey := strings.ReplaceAll(k, "_", "-")
+		headerKey := strings.ToLower(fmt.Sprintf("x-amz-meta-%s", normalizedKey))
 		// Normalize header value - trim whitespace and collapse multiple spaces
 		headerValue := strings.TrimSpace(v)
 		// Replace multiple consecutive spaces with single space
